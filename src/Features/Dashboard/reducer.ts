@@ -21,6 +21,9 @@ const slice = createSlice({
   name: 'weather',
   initialState,
   reducers: {
+    changeSelection: (state, action: PayloadAction<string[]>) => {
+      state.metrics.forEach(metric => (metric.isSelected = action.payload.includes(metric.name)));
+    },
     metricsDataReceived: (state, action: PayloadAction<string[]>) => {
       state.metrics = action.payload.map(name => ({ name, isSelected: false }));
     },
