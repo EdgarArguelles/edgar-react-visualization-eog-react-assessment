@@ -35,7 +35,9 @@ const slice = createSlice({
       );
     },
     setRealtimeMeasurements: (state, action: PayloadAction<Measurement>) => {
-      state.realtimeMeasurements.forEach(measurement => (measurement.value = action.payload.value));
+      state.realtimeMeasurements = state.realtimeMeasurements.map(measurement =>
+        measurement.metric === action.payload.metric ? action.payload : measurement,
+      );
     },
     metricsDataReceived: (state, action: PayloadAction<string[]>) => {
       state.metrics = action.payload.map(name => ({ name, isSelected: false }));
