@@ -42,7 +42,7 @@ const MetricCard = () => {
     // only dispatch action when metric is selected
     if (metrics.find(metric => metric.name === newMeasurement.metric && metric.isSelected))
       dispatch(actions.setRealtimeMeasurements(newMeasurement));
-  }, [dispatch, data, error]);
+  }, [dispatch, data, error, metrics]);
 
   return (
     <Grid container spacing={2}>
