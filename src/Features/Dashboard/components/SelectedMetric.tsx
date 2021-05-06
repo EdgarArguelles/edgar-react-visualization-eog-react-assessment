@@ -29,11 +29,6 @@ const useStyles = makeStyles({
   },
 });
 
-const getDashboard = (state: IState) => {
-  const { metrics } = state.dashboard;
-  return metrics;
-};
-
 export default () => {
   return (
     <Provider value={client}>
@@ -45,7 +40,7 @@ export default () => {
 const SelectedMetric = () => {
   const dispatch = useDispatch();
   const classes = useStyles();
-  const metrics = useSelector(getDashboard);
+  const metrics = useSelector((state: IState) => state.dashboard.metrics);
 
   const [result] = useQuery({ query });
   const { fetching, data, error } = result;
