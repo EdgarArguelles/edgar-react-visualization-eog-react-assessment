@@ -5,6 +5,7 @@ import Grid from '@material-ui/core/Grid';
 import { IState } from '../../store';
 import SelectedMetric from './components/SelectedMetric';
 import MetricCard from './components/MetricCard';
+import MetricCharts from './components/MetricCharts';
 
 const useStyles = makeStyles({
   grid: {
@@ -29,7 +30,7 @@ export default () => {
         <SelectedMetric />
       </Grid>
       <Grid item xs={12}>
-        {showContent && <div>Chart</div>}
+        {showContent && <MetricCharts />}
       </Grid>
     </Grid>
   );

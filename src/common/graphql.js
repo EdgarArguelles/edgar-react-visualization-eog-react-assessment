@@ -43,6 +43,22 @@ subscription {
     newMeasurement {
       metric
       value
+      at
+      unit
     }
   }
+`;
+
+export const getMultipleMeasurementsQuery = `
+query($input: [MeasurementQuery]) {
+  getMultipleMeasurements(input: $input)  {
+    metric
+    measurements {
+      metric
+      value
+      at
+      unit
+    }
+  }
+}
 `;
