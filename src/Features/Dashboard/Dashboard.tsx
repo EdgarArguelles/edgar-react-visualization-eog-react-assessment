@@ -4,8 +4,12 @@ import { useSelector } from 'react-redux';
 import Grid from '@material-ui/core/Grid';
 import { IState } from '../../store';
 import SelectedMetric from './components/SelectedMetric';
+import MetricCard from './components/MetricCard';
 
 const useStyles = makeStyles({
+  grid: {
+    width: '100%',
+  },
   select: {
     textAlign: 'right',
   },
@@ -17,9 +21,9 @@ export default () => {
   const showContent = !!metrics.filter(metric => metric.isSelected).length;
 
   return (
-    <Grid container spacing={5}>
+    <Grid container spacing={5} className={classes.grid}>
       <Grid item xs={6}>
-        {showContent && <div>Cards</div>}
+        {showContent && <MetricCard />}
       </Grid>
       <Grid item xs={6} className={classes.select}>
         <SelectedMetric />

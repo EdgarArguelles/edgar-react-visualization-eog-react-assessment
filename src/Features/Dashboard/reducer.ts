@@ -9,12 +9,19 @@ export type Metric = {
   isSelected: boolean;
 };
 
+export type Measurement = {
+  metric: string;
+  value: number;
+};
+
 export type MetricsState = {
   metrics: Metric[];
+  realtimeMeasurements: Measurement[];
 };
 
 const initialState: MetricsState = {
   metrics: [],
+  realtimeMeasurements: [],
 };
 
 const slice = createSlice({
@@ -23,6 +30,12 @@ const slice = createSlice({
   reducers: {
     changeSelection: (state, action: PayloadAction<string[]>) => {
       state.metrics.forEach(metric => (metric.isSelected = action.payload.includes(metric.name)));
+      state.realtimeMeasurements = action.payload.map(
+        metric => state.realtimeMeasurements.find(measurement => measurement.metric === metric) || { metric, value: 0 },
+      );
+    },
+    setRealtimeMeasurements: (state, action: PayloadAction<Measurement>) => {
+      state.realtimeMeasurements.forEach(measurement => (measurement.value = action.payload.value));
     },
     metricsDataReceived: (state, action: PayloadAction<string[]>) => {
       state.metrics = action.payload.map(name => ({ name, isSelected: false }));
