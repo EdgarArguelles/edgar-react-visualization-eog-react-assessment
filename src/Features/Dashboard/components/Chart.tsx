@@ -1,4 +1,6 @@
 import React from 'react';
+import moment from 'moment';
+import numeral from 'numeral';
 import { useSelector } from 'react-redux';
 import { Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 import { IState } from '../../../store';
@@ -21,6 +23,7 @@ export default () => {
           tickCount={tickCount}
           ticks={ticks}
           label={{ value: unit, angle: -90, position: 'insideTopLeft', dy: 10 }}
+          tickFormatter={tick => (tick > 999 ? numeral(tick).format('0.0 a') : tick)}
         />
       );
     });
@@ -28,7 +31,7 @@ export default () => {
 
   const renderCustomAxisTick = ({ x, y, payload }: { x: number; y: number; payload: any }) => (
     <text x={x - 20} y={y + 15}>
-      {new Date(payload.value).toLocaleString('en-US', { hour: 'numeric', minute: 'numeric' })}
+      {moment(payload.value).format('hh:mm')}
     </text>
   );
 
@@ -37,7 +40,7 @@ export default () => {
       <LineChart>
         <XAxis dataKey="at" tick={renderCustomAxisTick} tickCount={13} type="number" domain={['left', 'right']} />
         {createYAxis()}
-        <Tooltip labelFormatter={label => new Date(label).toLocaleString()} />
+        <Tooltip labelFormatter={label => moment(label).format('MMM DD YYYY h:mm:ss A')} />
         <Legend />
         {historyMeasurements.map((history, index) => (
           <Line
