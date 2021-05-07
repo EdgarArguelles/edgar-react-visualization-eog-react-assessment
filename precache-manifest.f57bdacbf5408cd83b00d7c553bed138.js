@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "d7dd468ba1e22f80b9acc0f589b823f1",
+    "revision": "207dbb1c8c94373a97675eb850bad91d",
     "url": "/edgar-react-visualization-eog-react-assessment/index.html"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/edgar-react-visualization-eog-react-assessment/static/js/2.25223797.chunk.js"
   },
   {
-    "revision": "869fd43a34a23dd8c2f7",
-    "url": "/edgar-react-visualization-eog-react-assessment/static/js/main.2d366535.chunk.js"
+    "revision": "3649755a5e8ab6981a4c",
+    "url": "/edgar-react-visualization-eog-react-assessment/static/js/main.f1920864.chunk.js"
   },
   {
     "revision": "4f02c9657cf38ebf709b",

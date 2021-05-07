@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/edgar-react-visualization-eog-react-assessment/precache-manifest.5205b1cbbaa2e28899177c005041be80.js"
+  "/edgar-react-visualization-eog-react-assessment/precache-manifest.f57bdacbf5408cd83b00d7c553bed138.js"
 );
 
 self.addEventListener('message', (event) => {
