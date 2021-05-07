@@ -7,6 +7,7 @@ export type ApiErrorAction = {
 export type Metric = {
   name: string;
   isSelected: boolean;
+  unit: string;
   history: Measurement[];
 };
 
@@ -51,7 +52,11 @@ const slice = createSlice({
     setMeasurementHistory: (state, action: PayloadAction<HistoryResponse[]>) => {
       action.payload.forEach(history => {
         const metric = state.metrics.find(({ name }) => name === history.metric);
-        if (metric) metric.history = history.measurements;
+        if (metric) {
+          metric.history = history.measurements;
+          const firstValue = metric.history[0];
+          if (firstValue) metric.unit = firstValue.unit;
+        }
       });
     },
     setRealtimeMeasurements: (state, action: PayloadAction<Measurement>) => {
@@ -60,7 +65,7 @@ const slice = createSlice({
       );
     },
     metricsDataReceived: (state, action: PayloadAction<string[]>) => {
-      state.metrics = action.payload.map(name => ({ name, isSelected: false, history: [] }));
+      state.metrics = action.payload.map(name => ({ name, isSelected: false, unit: '', history: [] }));
     },
     apiErrorReceived: (state, action: PayloadAction<ApiErrorAction>) => state,
   },
