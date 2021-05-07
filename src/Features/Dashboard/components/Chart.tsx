@@ -29,9 +29,9 @@ export default () => {
   return (
     <ResponsiveContainer>
       <LineChart>
-        <XAxis dataKey="at" tick={renderCustomAxisTick} type="number" domain={['left', 'right']} />
+        <XAxis dataKey="at" tick={renderCustomAxisTick} tickCount={13} type="number" domain={['left', 'right']} />
         {createYAxis()}
-        <Tooltip labelFormatter={label => new Date(label).toUTCString()} />
+        <Tooltip labelFormatter={label => new Date(label).toLocaleString()} />
         <Legend />
         {historyMeasurements.map((history, index) => (
           <Line
