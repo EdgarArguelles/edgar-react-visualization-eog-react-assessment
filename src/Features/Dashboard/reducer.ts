@@ -7,12 +7,11 @@ export type ApiErrorAction = {
 export type Metric = {
   name: string;
   isSelected: boolean;
-  unit: string;
-  history: Measurement[];
 };
 
-export type HistoryResponse = {
+export type History = {
   metric: string;
+  unit: string;
   measurements: Measurement[];
 };
 
@@ -26,11 +25,13 @@ export type Measurement = {
 export type MetricsState = {
   metrics: Metric[];
   realtimeMeasurements: Measurement[];
+  historyMeasurements: History[];
 };
 
 const initialState: MetricsState = {
   metrics: [],
   realtimeMeasurements: [],
+  historyMeasurements: [],
 };
 
 const slice = createSlice({
@@ -48,24 +49,33 @@ const slice = createSlice({
             unit: '',
           },
       );
+      state.historyMeasurements = action.payload.map(
+        metric =>
+          state.historyMeasurements.find(measurement => measurement.metric === metric) || {
+            metric,
+            unit: '',
+            measurements: [],
+          },
+      );
     },
-    setMeasurementHistory: (state, action: PayloadAction<HistoryResponse[]>) => {
-      action.payload.forEach(history => {
-        const metric = state.metrics.find(({ name }) => name === history.metric);
-        if (metric) {
-          metric.history = history.measurements;
-          const firstValue = metric.history[0];
-          if (firstValue) metric.unit = firstValue.unit;
-        }
+    setMeasurementHistory: (state, action: PayloadAction<History[]>) => {
+      state.historyMeasurements = action.payload.map(history => {
+        const firstValue = history.measurements[0];
+        const unit = firstValue ? firstValue.unit : '';
+        return { ...history, unit };
       });
     },
     setRealtimeMeasurements: (state, action: PayloadAction<Measurement>) => {
       state.realtimeMeasurements = state.realtimeMeasurements.map(measurement =>
         measurement.metric === action.payload.metric ? action.payload : measurement,
       );
+
+      // add real time Measurement to history
+      const history = state.historyMeasurements.find(({ metric }) => metric === action.payload.metric);
+      if (history && history.measurements.length) history.measurements.push(action.payload);
     },
     metricsDataReceived: (state, action: PayloadAction<string[]>) => {
-      state.metrics = action.payload.map(name => ({ name, isSelected: false, unit: '', history: [] }));
+      state.metrics = action.payload.map(name => ({ name, isSelected: false }));
     },
     apiErrorReceived: (state, action: PayloadAction<ApiErrorAction>) => state,
   },

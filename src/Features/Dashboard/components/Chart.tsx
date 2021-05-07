@@ -4,12 +4,12 @@ import { Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } f
 import { IState } from '../../../store';
 
 export default () => {
-  const allMetrics = useSelector((state: IState) => state.dashboard.metrics);
-  const metrics = allMetrics.filter(({ isSelected, history }) => isSelected && history.length);
+  const allHistoryMeasurements = useSelector((state: IState) => state.dashboard.historyMeasurements);
+  const historyMeasurements = allHistoryMeasurements.filter(({ measurements }) => measurements.length);
   const colors = ['purple', 'red', 'orange', 'brown', 'blue', 'green'];
   const createYAxis = () => {
     // get all units removing empty or duplicated
-    const units = Array.from(new Set(metrics.filter(({ unit }) => unit).map(({ unit }) => unit)));
+    const units = Array.from(new Set(historyMeasurements.filter(({ unit }) => unit).map(({ unit }) => unit)));
     return units.map(unit => (
       <YAxis
         key={unit}
@@ -33,16 +33,16 @@ export default () => {
         {createYAxis()}
         <Tooltip labelFormatter={label => new Date(label).toUTCString()} />
         <Legend />
-        {metrics.map((metric, index) => (
+        {historyMeasurements.map((history, index) => (
           <Line
             type="monotone"
             dataKey="value"
             dot={false}
             stroke={colors[index]}
-            name={metric.name}
-            key={metric.name}
-            data={metric.history}
-            yAxisId={metric.unit}
+            name={history.metric}
+            key={history.metric}
+            data={history.measurements}
+            yAxisId={history.unit}
           />
         ))}
       </LineChart>
