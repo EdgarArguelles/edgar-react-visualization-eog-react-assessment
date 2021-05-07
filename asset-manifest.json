@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.js": "/edgar-react-visualization-eog-react-assessment/static/js/main.f1920864.chunk.js",
-    "main.js.map": "/edgar-react-visualization-eog-react-assessment/static/js/main.f1920864.chunk.js.map",
+    "main.js": "/edgar-react-visualization-eog-react-assessment/static/js/main.fadaf407.chunk.js",
+    "main.js.map": "/edgar-react-visualization-eog-react-assessment/static/js/main.fadaf407.chunk.js.map",
     "runtime-main.js": "/edgar-react-visualization-eog-react-assessment/static/js/runtime-main.f235ead4.js",
     "runtime-main.js.map": "/edgar-react-visualization-eog-react-assessment/static/js/runtime-main.f235ead4.js.map",
     "static/css/2.5dbdccff.chunk.css": "/edgar-react-visualization-eog-react-assessment/static/css/2.5dbdccff.chunk.css",
-    "static/js/2.25223797.chunk.js": "/edgar-react-visualization-eog-react-assessment/static/js/2.25223797.chunk.js",
-    "static/js/2.25223797.chunk.js.map": "/edgar-react-visualization-eog-react-assessment/static/js/2.25223797.chunk.js.map",
+    "static/js/2.b97fee29.chunk.js": "/edgar-react-visualization-eog-react-assessment/static/js/2.b97fee29.chunk.js",
+    "static/js/2.b97fee29.chunk.js.map": "/edgar-react-visualization-eog-react-assessment/static/js/2.b97fee29.chunk.js.map",
     "index.html": "/edgar-react-visualization-eog-react-assessment/index.html",
-    "precache-manifest.f57bdacbf5408cd83b00d7c553bed138.js": "/edgar-react-visualization-eog-react-assessment/precache-manifest.f57bdacbf5408cd83b00d7c553bed138.js",
+    "precache-manifest.1bcee78ddf3ea68733dc58aa9146ca9c.js": "/edgar-react-visualization-eog-react-assessment/precache-manifest.1bcee78ddf3ea68733dc58aa9146ca9c.js",
     "service-worker.js": "/edgar-react-visualization-eog-react-assessment/service-worker.js",
     "static/css/2.5dbdccff.chunk.css.map": "/edgar-react-visualization-eog-react-assessment/static/css/2.5dbdccff.chunk.css.map"
   },
   "entrypoints": [
     "static/js/runtime-main.f235ead4.js",
     "static/css/2.5dbdccff.chunk.css",
-    "static/js/2.25223797.chunk.js",
-    "static/js/main.f1920864.chunk.js"
+    "static/js/2.b97fee29.chunk.js",
+    "static/js/main.fadaf407.chunk.js"
   ]
 }
